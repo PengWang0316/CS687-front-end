@@ -21,6 +21,7 @@
   "sideEffects": false,
   "dependencies": {
     "@hot-loader/react-dom": "^16.8.6",
+    "@kevinwang0316/redis-helper": "^1.0.1",
     "@material-ui/core": "^4.1.0",
     "@material-ui/icons": "^4.1.0",
     "@types/react": "^16.8.22",
