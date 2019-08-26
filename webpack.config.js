@@ -56,6 +56,7 @@ const config = {
   resolve: {
     alias: {
       'react-dom': '@hot-loader/react-dom',
+      // 'hiredis': path.join(__dirname, 'aliases/hiredis.js'),
     },
     // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: ['.ts', '.tsx', '.js', '.json'],

@@ -1,13 +1,14 @@
 import React, { memo, useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Fab, Tooltip } from '@material-ui/core';
-import { Add as AddIcon } from '@material-ui/icons';
-import I18n from '@kevinwang0316/i18n';
+import { Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core';
 
-import PostList from '../PostList';
-import AddPostDialog from '../AddPostDialog';
+import I18n from '../../utils/I18n';
 
 const useStyles = makeStyles({
+  card: {
+    maxWidth: 345,
+    margin: '50px auto',
+  },
   rootPaper: {
     margin: '50px auto 10px auto',
     width: '80%',
@@ -22,22 +23,32 @@ const useStyles = makeStyles({
 
 export const HomePageContainer = () => {
   const classes = useStyles({});
-  const [isOpenAddPost, setIsOpenAddPost] = useState(false);
-  const addPostDialogCloseCallback = useCallback(() => setIsOpenAddPost((state: boolean) => !state), []);
 
   return (
-    <Paper className={classes.rootPaper}>
-      <PostList />
-      <Tooltip title={I18n.get('addPost')} placement="left-start">
-        <Fab size="medium" color="secondary" aria-label="Add" className={classes.fab} onClick={addPostDialogCloseCallback}>
-          <AddIcon />
-        </Fab>
-      </Tooltip>
-      <AddPostDialog
-        isOpen={isOpenAddPost}
-        handleClose={addPostDialogCloseCallback}
-      />
-    </Paper>
+    <Card className={classes.card}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          alt={I18n.get('greeting')}
+          height="240"
+          image={I18n.get('cakeImg')}
+          title={I18n.get('greeting')}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {I18n.get('greeting')}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {I18n.get('description')}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <audio controls>
+          <source type="audio/mp3" src={I18n.get('audio')} />
+        </audio>
+      </CardActions>
+    </Card>
   );
 };
 

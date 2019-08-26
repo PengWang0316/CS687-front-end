@@ -26,4 +26,3 @@ yarn-error.log*
 .coveralls.yml
 information.txt
 /temp
-config.ts
