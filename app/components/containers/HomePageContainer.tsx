@@ -1,54 +1,42 @@
 import React, { memo, useCallback, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 
+import BirthdayCard from '../BirthdayCard';
+import GiftTable from '../GiftTable';
 import I18n from '../../utils/I18n';
 
-const useStyles = makeStyles({
-  card: {
-    maxWidth: 345,
-    margin: '50px auto',
-  },
-  rootPaper: {
-    margin: '50px auto 10px auto',
-    width: '80%',
-    padding: 15,
-  },
-  fab: {
-    position: 'fixed',
-    bottom: 20,
-    right: 20,
-  },
-});
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    section: {
+      display: 'grid',
+      gridTemplateAreas: `"${I18n.get('templateAreas')}"`,
+      gridColumnGap: 20,
+      alignItems: 'center',
+      marginTop: 60,
+    },
+    card: {
+      gridArea: 'card',
+      justifySelf: I18n.get('cardCssJustify'),
+    },
+    table: {
+      gridArea: 'table',
+      justifySelf: I18n.get('tableCssJustify'),
+    },
+  }),
+);
+
 
 export const HomePageContainer = () => {
   const classes = useStyles({});
-
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt={I18n.get('greeting')}
-          height="240"
-          image={I18n.get('cakeImg')}
-          title={I18n.get('greeting')}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {I18n.get('greeting')}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {I18n.get('description')}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <audio controls>
-          <source type="audio/mp3" src={I18n.get('audio')} />
-        </audio>
-      </CardActions>
-    </Card>
+    <section className={classes.section}>
+      <div className={classes.card}>
+        <BirthdayCard />
+      </div>
+      <div className={classes.table}>
+       <GiftTable />
+      </div>
+    </section>
   );
 };
 
